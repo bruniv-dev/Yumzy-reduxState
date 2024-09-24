@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
+      lowercase: true,
     },
     password: {
       type: String,
@@ -18,6 +19,11 @@ const userSchema = new mongoose.Schema(
     cartData: {
       type: Object,
       default: {},
+    },
+    role: {
+      type: String,
+      enum: ["user", "admin"], // Enum to limit to predefined roles
+      default: "user", // Default role will be "user"
     },
   },
   { minimize: false }
