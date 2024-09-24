@@ -3,7 +3,7 @@ import SideBar from "../../components/SideBar/SideBar";
 
 const AdminPanel = () => {
   return (
-    <div className="admin-panel">
+    <div>
       <SideBar />
     </div>
   );

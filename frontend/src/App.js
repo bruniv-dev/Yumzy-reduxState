@@ -6,7 +6,7 @@ import Home from "./pages/Home/Home";
 import Cart from "./pages/Cart/Cart";
 import PlaceOrder from "./pages/PlaceOrder/PlaceOrder";
 import Footer from "./components/Footer/Footer";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import LoginPopup from "./components/LoginPopup/LoginPopup";
 // import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,7 +17,10 @@ import AdminPanel from "./pages/AdminPanel/AdminPanel";
 import Add from "./pages/Add/Add";
 import List from "./pages/List/List";
 import Orders from "./pages/Orders/Orders";
-import SideBar from "./components/SideBar/SideBar";
+import { loginSuccess } from "./reduxStore/authSlice";
+import { useDispatch } from "react-redux";
+
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -25,9 +28,20 @@ function App() {
     process.env.NODE_ENV === "development"
       ? "http://localhost:5000"
       : "https://yumzy-api.onrender.com";
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   const role = localStorage.getItem("role");
+
+  //   // If a token exists in localStorage, hydrate the Redux store
+  //   if (token && role) {
+  //     dispatch(loginSuccess({ token, user: { role } }));
+  //   }
+  // }, [dispatch]);
   return (
     <>
-      {/* <ToastContainer /> */}
+      <ToastContainer />
       {showLogin ? <LoginPopup setShowLogin={setShowLogin} /> : <></>}
       <div className="App">
         <NavBar setShowLogin={setShowLogin} />
