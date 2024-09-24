@@ -13,9 +13,18 @@ import "react-toastify/dist/ReactToastify.css";
 import Verify from "./pages/Verify/Verify";
 import MyOrders from "./pages/MyOrders/MyOrders";
 import NavBar from "./components/NavBar/NavBar";
+import AdminPanel from "./pages/AdminPanel/AdminPanel";
+import Add from "./pages/Add/Add";
+import List from "./pages/List/List";
+import Orders from "./pages/Orders/Orders";
+import SideBar from "./components/SideBar/SideBar";
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
+  const url =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:5000"
+      : "https://yumzy-api.onrender.com";
   return (
     <>
       {/* <ToastContainer /> */}
@@ -31,6 +40,10 @@ function App() {
           <Route path="/order" element={<PlaceOrder />}></Route>
           <Route path="/verify" element={<Verify />}></Route>
           <Route path="/myorders" element={<MyOrders />}></Route>
+          <Route path="/admin" element={<AdminPanel />}></Route>
+          <Route path="/admin/add" element={<Add url={url} />}></Route>
+          <Route path="/admin/list" element={<List url={url} />}></Route>
+          <Route path="/admin/orders" element={<Orders url={url} />}></Route>
         </Routes>
       </div>
       <Footer />

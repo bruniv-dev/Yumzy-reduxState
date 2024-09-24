@@ -34,13 +34,44 @@ export const removeFromCart = async (req, res) => {
   }
 };
 
+// export const getCart = async (req, res) => {
+//   try {
+//     let userData = await userModel.findById(req.body.userId);
+//     let cartData = await userData.cartData;
+//     res.json({ success: true, cartData });
+//   } catch (error) {
+//     console.log(error);
+//     res.json({ success: false, message: "Error" });
+//   }
+// };
+
 export const getCart = async (req, res) => {
   try {
-    let userData = await userModel.findById(req.body.userId);
-    let cartData = await userData.cartData;
+    // Make sure the userId is provided in the request body
+    const { userId } = req.body;
+    if (!userId) {
+      return res
+        .status(400)
+        .json({ success: false, message: "User ID is required" });
+    }
+
+    // Find user by ID
+    let userData = await userModel.findById(userId);
+
+    // Check if user was found
+    if (!userData) {
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
+    }
+
+    // Retrieve cart data from the found user
+    let cartData = userData.cartData;
+
+    // Respond with the cart data
     res.json({ success: true, cartData });
   } catch (error) {
-    console.log(error);
-    res.json({ success: false, message: "Error" });
+    console.error(error); // Use console.error for errors
+    res.status(500).json({ success: false, message: "Server error" });
   }
 };

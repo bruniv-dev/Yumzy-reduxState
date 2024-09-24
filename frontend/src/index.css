@@ -27,6 +27,10 @@ a {
   margin: auto;
 }
 
+.admin-panel {
+  width: 100vh;
+}
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
