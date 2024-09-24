@@ -5,15 +5,25 @@ import { Link, useNavigate } from "react-router-dom";
 import { StoreContext } from "../../context/StoreContext";
 import { IoCart } from "react-icons/io5";
 import { FaUser } from "react-icons/fa";
+import { logout as logoutAction } from "../../reduxStore/authSlice";
+import { useDispatch } from "react-redux";
 
 const Header = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("home");
   const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const logout = () => {
+    // Remove token from localStorage
     localStorage.removeItem("token");
-    setToken("");
+
+    // Dispatch Redux logout action to reset the state
+    dispatch(logoutAction());
+
+    // Redirect to home or login page
     navigate("/");
+
+    // Optionally reload the page to fully clear session (if necessary)
     window.location.reload();
   };
 

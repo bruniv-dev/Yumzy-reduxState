@@ -3,10 +3,12 @@ import "./LoginPopup.css";
 import { assets } from "../../assets/assets";
 import { StoreContext } from "../../context/StoreContext";
 import axios from "axios";
+import { loginSuccess } from "../../reduxStore/authSlice";
 // import {toast} from "react-toastify";
+import { useDispatch } from "react-redux";
 
 const LoginPopup = ({ setShowLogin }) => {
-  const { url, token, setToken } = useContext(StoreContext);
+  const { url, setToken } = useContext(StoreContext);
   const [currentState, setCurrentState] = useState("Log In");
   const [data, setData] = useState({
     name: "",
@@ -23,9 +25,11 @@ const LoginPopup = ({ setShowLogin }) => {
   // useEffect(() => {
   //   console.log(data);
   // }, [data]);
+  const dispatch = useDispatch();
 
-  const onLogin = async (event) => {
+  const onLogin = async (event, dispatch) => {
     event.preventDefault();
+
     let newUrl = url;
     if (currentState === "Log In") {
       newUrl += "/api/user/login";
@@ -35,6 +39,8 @@ const LoginPopup = ({ setShowLogin }) => {
 
     const response = await axios.post(newUrl, data);
     if (response.data.success) {
+      const { token, role } = response.data; // Extract the token and role from the response
+      dispatch(loginSuccess({ token, user: { role } }));
       setToken(response.data.token);
       localStorage.setItem("token", response.data.token);
       setShowLogin(false);
