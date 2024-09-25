@@ -2,10 +2,14 @@ import React from "react";
 import "./Footer.css";
 import { assets } from "../../assets/assets";
 import { Link } from "react-router-dom";
+import { FaLinkedinIn } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
+import { RiFacebookFill } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-
+  const navigate = useNavigate();
   return (
     <div className="footer" id="footer">
       <div className="footer-content">
@@ -17,9 +21,24 @@ const Footer = () => {
             delivery. Find your new favorite meal with Yumzy today!
           </p>
           <div className="footer-social-icons">
-            <img src={assets.facebook_icon} alt="" />
+            {/* <img src={assets.facebook_icon} alt="" />
             <img src={assets.twitter_icon} alt="" />
-            <img src={assets.linkedin_icon} alt="" />
+            <img src={assets.linkedin_icon} alt="" /> */}
+            <RiFacebookFill
+              onClick={() => {
+                navigate("/");
+              }}
+            />
+            <FaTwitter
+              onClick={() => {
+                navigate("/");
+              }}
+            />
+            <FaLinkedinIn
+              onClick={() => {
+                navigate("/");
+              }}
+            />
           </div>
         </div>
         <div className="footer-content-center">

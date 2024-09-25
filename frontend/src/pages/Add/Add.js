@@ -4,7 +4,6 @@ import { assets } from "../../assets/assets";
 import axios from "axios";
 import { toast } from "react-toastify";
 import SideBar from "../../components/SideBar/SideBar";
-// import { useEffect } from "react";
 
 const Add = ({ url }) => {
   const [image, setImage] = useState(false);

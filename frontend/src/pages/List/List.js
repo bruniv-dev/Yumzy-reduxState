@@ -36,7 +36,7 @@ const List = ({ url }) => {
     <div className="list-full-page">
       <SideBar />
       <div className="list add flex-col">
-        <p>Food List</p>
+        <h3>Food List</h3>
         <div className="list-table">
           <div className="list-table-format title">
             <b>Image</b>

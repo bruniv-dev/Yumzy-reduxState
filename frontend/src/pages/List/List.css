@@ -2,6 +2,11 @@
   display: flex;
 }
 
+.list h3 {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
 .list-table-format {
   display: grid;
   grid-template-columns: 0.5fr 2fr 1fr 1fr 0.5fr;
