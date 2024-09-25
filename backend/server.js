@@ -17,7 +17,13 @@ dotenv.config({ path: ".env" });
 //frontend to backend request will be parsed using json
 app.use(express.json());
 //can access backend from any frontend
-app.use(cors());
+// app.use(cors());
+const corsOptions = {
+  origin: "http://localhost:3000",
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 
 //database connection
 connectDB();

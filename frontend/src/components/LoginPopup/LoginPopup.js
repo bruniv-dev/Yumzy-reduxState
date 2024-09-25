@@ -122,7 +122,7 @@ import { StoreContext } from "../../context/StoreContext";
 import axios from "axios";
 import { loginSuccess } from "../../reduxStore/authSlice";
 // Uncomment the import below if you're using toast notifications
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 
 const LoginPopup = ({ setShowLogin }) => {
@@ -161,10 +161,12 @@ const LoginPopup = ({ setShowLogin }) => {
         // Reset form data after successful login/registration
         setData({ name: "", email: "", password: "" });
         setShowLogin(false);
+        toast.success("Logged In Successfully");
       } else {
         // Uncomment the line below if you're using toast notifications
         // toast.error(response.data.message);
-        alert(response.data.message);
+        const error = response.data.message;
+        toast.error(error);
       }
     } catch (error) {
       console.error("Login/Registration error:", error);
