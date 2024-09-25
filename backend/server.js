@@ -5,6 +5,7 @@ import foodRouter from "./routes/foodRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 import cartRouter from "./routes/cartRoutes.js";
 import { orderRouter } from "./routes/orderRoutes.js";
+import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 
 //app config
 const app = express();
