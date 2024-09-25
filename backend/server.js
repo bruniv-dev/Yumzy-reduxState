@@ -19,7 +19,7 @@ app.use(express.json());
 //can access backend from any frontend
 // app.use(cors());
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: ["http://localhost:3000", "https://yumzy.onrender.com"],
   optionsSuccessStatus: 200,
 };
 
