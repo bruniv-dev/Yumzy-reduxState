@@ -111,12 +111,12 @@ export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
-  // const url =
-  //   process.env.NODE_ENV === "development"
-  //     ? "http://localhost:5000"
-  //     : "https://yumzy-api.onrender.com";
+  const url =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:5000"
+      : "https://yumzy-api.onrender.com";
 
-  const url = "https://yumzy-api.onrender.com";
+  // const url = "https://yumzy-api.onrender.com";
 
   const [token, setToken] = useState(localStorage.getItem("token") || ""); // Token from localStorage
   const [food_list, setFoodList] = useState([]);

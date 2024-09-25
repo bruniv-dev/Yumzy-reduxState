@@ -4,7 +4,7 @@ import Home from "./pages/Home/Home";
 import Cart from "./pages/Cart/Cart";
 import PlaceOrder from "./pages/PlaceOrder/PlaceOrder";
 import Footer from "./components/Footer/Footer";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import LoginPopup from "./components/LoginPopup/LoginPopup";
 import Verify from "./pages/Verify/Verify";
 import MyOrders from "./pages/MyOrders/MyOrders";
@@ -16,15 +16,17 @@ import Orders from "./pages/Orders/Orders";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AdminRoute from "./components/AdminRoute/AdminRoute"; // Import AdminRoute
+import { StoreContext } from "./context/StoreContext";
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
+  const { url } = useContext(StoreContext);
   // const url =
   //   process.env.NODE_ENV === "development"
   //     ? "http://localhost:5000"
   //     : "https://yumzy-api.onrender.com";
 
-  const url = "https://yumzy-api.onrender.com";
+  // const url = "https://yumzy-api.onrender.com";
 
   return (
     <>

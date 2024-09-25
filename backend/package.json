@@ -15,6 +15,7 @@
   "author": "Nivedha",
   "license": "ISC",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.658.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.3",
     "cors": "^2.8.5",
