@@ -19,10 +19,12 @@ import AdminRoute from "./components/AdminRoute/AdminRoute"; // Import AdminRout
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
-  const url =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:5000"
-      : "https://yumzy-api.onrender.com";
+  // const url =
+  //   process.env.NODE_ENV === "development"
+  //     ? "http://localhost:5000"
+  //     : "https://yumzy-api.onrender.com";
+
+  const url = "https://yumzy-api.onrender.com";
 
   return (
     <>
