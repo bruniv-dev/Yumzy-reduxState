@@ -170,7 +170,8 @@ const LoginPopup = ({ setShowLogin }) => {
       }
     } catch (error) {
       console.error("Login/Registration error:", error);
-      alert("An error occurred. Please try again.");
+      // alert("An error occurred. Please try again.");
+      toast.error("Failed to Login.Try Again Later");
     } finally {
       setLoading(false); // Reset loading state
     }

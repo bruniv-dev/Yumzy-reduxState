@@ -114,6 +114,7 @@ import { IoCart } from "react-icons/io5";
 import { FaUser } from "react-icons/fa";
 import { logout as logoutAction } from "../../reduxStore/authSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const NavBar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("home");
@@ -129,7 +130,8 @@ const NavBar = ({ setShowLogin }) => {
     // Dispatch Redux logout action to reset the state
     dispatch(logoutAction());
     navigate("/");
-    window.location.reload();
+    setToken("");
+    toast.success("Logged Out!");
   };
 
   return (
@@ -215,9 +217,9 @@ const NavBar = ({ setShowLogin }) => {
                 </p>
               </li>
               <hr />
-              <li>
+              <li onClick={logout}>
                 <img src={assets.logout_icon} alt="Logout" />
-                <p onClick={logout}>Logout</p>
+                <p>Logout</p>
               </li>
             </ul>
           </div>
