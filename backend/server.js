@@ -17,13 +17,7 @@ dotenv.config({ path: ".env" });
 //frontend to backend request will be parsed using json
 app.use(express.json());
 //can access backend from any frontend
-// app.use(cors());
-const corsOptions = {
-  origin: ["http://localhost:3000", "https://yumzy.onrender.com"],
-  optionsSuccessStatus: 200,
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 
 //database connection
 connectDB();
