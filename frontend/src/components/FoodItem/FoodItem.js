@@ -30,7 +30,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
           //   alt=""
           //   onClick={() => addToCart(id)}
           // />
-          <FaCirclePlus className="add" onClick={() => addToCart(id)} />
+          <FaCirclePlus className="add-first" onClick={() => addToCart(id)} />
         ) : (
           <div className="food-item-counter">
             {/* <img

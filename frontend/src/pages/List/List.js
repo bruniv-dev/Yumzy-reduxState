@@ -3,6 +3,8 @@ import "./List.css";
 import axios from "axios";
 import { toast } from "react-toastify";
 import SideBar from "../../components/SideBar/SideBar";
+import { RiDeleteBinFill } from "react-icons/ri";
+import { MdEdit } from "react-icons/md";
 
 const List = ({ url }) => {
   const [list, setList] = useState([]);
@@ -28,6 +30,16 @@ const List = ({ url }) => {
     }
   };
 
+  const editFood = async (foodId) => {
+    const response = await axios.put(`${url}/api/food/edit`, { id: foodId });
+    await fetchList();
+    if (response.data.success) {
+      toast.success(response.data.message);
+    } else {
+      toast.error(response.data.error);
+    }
+  };
+
   useEffect(() => {
     fetchList();
   }, []);
@@ -35,7 +47,7 @@ const List = ({ url }) => {
   return (
     <div className="list-full-page">
       <SideBar />
-      <div className="list add flex-col">
+      <div className="list flex-col">
         <h3>Food List</h3>
         <div className="list-table">
           <div className="list-table-format title">
@@ -53,8 +65,12 @@ const List = ({ url }) => {
                 <p>{item.name}</p>
                 <p>{item.category}</p>
                 <p>&#8377;{item.price}</p>
-                <p className="cross" onClick={() => removeFood(item._id)}>
-                  x
+                <p>
+                  <RiDeleteBinFill
+                    className="cross"
+                    onClick={() => removeFood(item._id)}
+                  />
+                  <MdEdit className="edit" onClick={() => editFood(item._id)} />
                 </p>
               </div>
             );

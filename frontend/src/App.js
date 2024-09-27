@@ -9,7 +9,7 @@ import LoginPopup from "./components/LoginPopup/LoginPopup";
 import Verify from "./pages/Verify/Verify";
 import MyOrders from "./pages/MyOrders/MyOrders";
 import NavBar from "./components/NavBar/NavBar";
-import AdminPanel from "./pages/AdminPanel/AdminPanel";
+
 import Add from "./pages/Add/Add";
 import List from "./pages/List/List";
 import Orders from "./pages/Orders/Orders";
@@ -45,14 +45,7 @@ function App() {
           <Route path="/myorders" element={<MyOrders />}></Route>
 
           {/* Admin Routes - protected with AdminRoute */}
-          <Route
-            path="/admin"
-            element={
-              <AdminRoute>
-                <AdminPanel />
-              </AdminRoute>
-            }
-          />
+
           <Route
             path="/admin/add"
             element={

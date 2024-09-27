@@ -1,34 +1,90 @@
 .add-full-page {
   display: flex;
+  /* justify-content: center;
+  padding: 40px; */
+  background-color: #f8f9fa;
 }
 
 .add {
+  display: flex;
   width: 70%;
   margin-left: max(5vw, 25px);
-  margin-top: 50px;
   color: var(--secondary-color);
   font-size: 16px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin: 30px auto;
 }
 
 .add form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 30px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 10px;
+}
+
+.add .row-1 {
+  width: 80%;
+  display: flex;
+  gap: 30px;
+}
+
+.add input,
+.add textarea {
+  font-size: 16px;
+}
+
+.add-left {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: flex-start; */
+  align-items: flex-start;
+  flex: 1;
+  /* gap: 20px; */
+}
+
+.add-right {
+  width: 60%;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex: 1;
 }
 
 .add-img-upload img {
-  width: 120px;
-  border-radius: 4px;
+  width: 150px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  object-fit: cover;
+  padding: 10px;
+  border: 1px dashed var(--primary-color);
 }
 
 .add-product-name,
 .add-product-description {
-  width: max(40%, 280px);
+  width: 100%;
 }
 
 .add-product-name input,
 .add-product-description textarea {
-  padding: 10px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  transition: border-color 0.3s ease;
+}
+
+.add-product-name input:focus,
+.add-product-description textarea:focus {
+  border-color: var(--primary-color);
+  outline: none;
 }
 
 .add-category-price {
@@ -36,19 +92,65 @@
   gap: 30px;
 }
 
-.add-category-price select,
-.add-category-price input {
-  max-width: 120px;
-  padding: 8px;
+.add-category select,
+.add-price input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
 }
 
-.add-button {
-  width: 120px;
+.add-category select:focus,
+.add-price input:focus {
+  border-color: var(--primary-color);
+}
+
+.add-form-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.add-button,
+.cancel-button {
+  width: 80px;
   border: none;
   cursor: pointer;
-  padding: 10px;
+  padding: 12px;
   background-color: var(--primary-color);
   color: white;
-  border-radius: 4px;
-  margin-top: 10px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+}
+
+.cancel-button {
+  background-color: #999;
+}
+
+.add-button:hover,
+.add-button:active {
+  background-color: var(--dark-yellow);
+}
+
+.cancel-button:hover,
+.cancel-button:active {
+  background-color: var(--secondary-color);
+}
+
+.add p {
+  margin-bottom: 10px;
+  color: #777;
+  font-size: 14px;
+}
+
+@media (max-width: 900px) {
+  .add .row-1 {
+    flex-direction: column;
+  }
+
+  .add-left,
+  .add-right {
+    width: 100%;
+  }
 }

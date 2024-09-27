@@ -36,12 +36,12 @@ const Orders = ({ url }) => {
   return (
     <div className="orders-full-page">
       <SideBar />
-      <div className="order add">
+      <div className="order">
         <h3>Orders</h3>
         <div className="order-list">
           {orders.map((order, index) => (
             <div key={index} className="order-item">
-              <img src={assets.parcel_icon} alt="" />
+              <img src={assets.icon} alt="" />
               <div>
                 <p className="order-item-food">
                   {order.items.map((item, index) => {

@@ -64,6 +64,7 @@ import bag_yellow from "./bag_yellow.png";
 import logout_icon from "./logout_icon.png";
 import parcel_icon from "./parcel_icon.png";
 import upload_grey from "./upload_grey.png";
+import icon from "./icon.png";
 
 export const assets = {
   logo,
@@ -90,6 +91,7 @@ export const assets = {
   bag_yellow,
   parcel_icon,
   upload_grey,
+  icon,
 };
 
 export const menu_list = [

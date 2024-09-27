@@ -9,12 +9,14 @@
   /* --secondary-color: #49557e; */
   --secondary-color: #444;
   --dark-yellow: #eea012;
+  --light-yellow: #fcedc2;
   scroll-behavior: smooth;
 }
 
 body {
   min-height: 100vh;
   background-color: #fffffe;
+  font-size: 16px;
 }
 
 a {
@@ -25,10 +27,6 @@ a {
 .App {
   width: 80%;
   margin: auto;
-}
-
-.admin-panel {
-  width: 100vh;
 }
 
 @keyframes fadeIn {

@@ -183,7 +183,7 @@ const NavBar = ({ setShowLogin }) => {
         {/* Conditionally render "Add" link for admin users */}
         {userInfo?.role === "admin" && (
           <Link
-            to="/admin"
+            to="/admin/add"
             onClick={() => setMenu("add")}
             className={`navbar-menu-item ${menu === "add" ? "active" : ""}`}
           >

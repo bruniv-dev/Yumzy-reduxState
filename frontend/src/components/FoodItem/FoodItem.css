@@ -78,7 +78,7 @@
 
 .food-item-counter {
   position: absolute;
-  bottom: 15px;
+  bottom: 25px;
   right: 15px;
   display: flex;
   align-items: center;
@@ -92,9 +92,12 @@
   width: 30px;
 }
 
-.add {
-  font-size: 30px;
-  fill: #fff;
+.add-first {
+  font-size: 25px;
+  fill: var(--primary-color);
+  position: absolute;
+  bottom: 25px;
+  right: 15px;
 }
 
 .icon {
