@@ -122,13 +122,39 @@ export const removeFood = async (req, res) => {
   }
 };
 
+export const getFoodById = async (req, res) => {
+  try {
+    const { id: foodId } = req.params; // Destructure foodId from params
+    const foodItem = await Food.findById(foodId); // Find food by ID
+
+    if (!foodItem) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Food item not found" });
+    }
+
+    // Respond with the found food item
+    return res.status(200).json({
+      success: true,
+      data: foodItem,
+    });
+  } catch (error) {
+    console.error("Error fetching food item:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Server error. Could not retrieve food item.",
+    });
+  }
+};
+
 export const editFood = async (req, res) => {
-  const { id, name, description, price, category } = req.body;
+  const { foodId } = req.params; // Use params for foodId
+  const { name, description, price, category } = req.body;
   const file = req.file;
 
   try {
-    // Find the existing food item by its ID
-    const food = await foodModel.findById(id);
+    // Find the food item by ID
+    const food = await foodModel.findById(foodId);
 
     if (!food) {
       return res
@@ -138,20 +164,22 @@ export const editFood = async (req, res) => {
 
     let newImageUrl = food.image;
 
-    // If a new file is uploaded, replace the existing image
+    // If a new image file is uploaded
     if (file && file.buffer) {
-      // Delete the old image from S3
-      const imageUrl = food.image;
-      const imageKey = imageUrl.split(
-        `${bucketName}.s3.${region}.amazonaws.com/`
-      )[1];
+      // Delete the old image from S3 if it exists
+      if (food.image) {
+        const imageUrl = food.image;
+        const imageKey = imageUrl.split(
+          `${bucketName}.s3.${region}.amazonaws.com/`
+        )[1];
 
-      const deleteParams = {
-        Bucket: bucketName,
-        Key: imageKey,
-      };
-      const deleteCommand = new DeleteObjectCommand(deleteParams);
-      await s3.send(deleteCommand);
+        const deleteParams = {
+          Bucket: bucketName,
+          Key: imageKey,
+        };
+        const deleteCommand = new DeleteObjectCommand(deleteParams);
+        await s3.send(deleteCommand);
+      }
 
       // Upload the new image to S3
       const newParams = {
@@ -167,14 +195,17 @@ export const editFood = async (req, res) => {
       newImageUrl = `https://${bucketName}.s3.${region}.amazonaws.com/${file.originalname}`;
     }
 
+    // Update food fields with new data or keep old data if not provided
     food.name = name || food.name;
     food.description = description || food.description;
     food.price = price || food.price;
     food.category = category || food.category;
     food.image = newImageUrl;
 
+    // Save the updated food item
     await food.save();
 
+    // Respond with the updated food item
     res.json({
       success: true,
       message: "Food item updated successfully",
@@ -182,8 +213,9 @@ export const editFood = async (req, res) => {
     });
   } catch (error) {
     console.error("Error updating food item:", error);
-    res
-      .status(500)
-      .json({ success: false, message: "Error updating food item" });
+    res.status(500).json({
+      success: false,
+      message: "Error updating food item",
+    });
   }
 };

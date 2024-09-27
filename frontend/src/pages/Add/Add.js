@@ -219,37 +219,6 @@ const Add = ({ url }) => {
       <div className="add">
         <form onSubmit={onSubmitHandler}>
           <div className="row-1">
-            <div className="add-left">
-              <div className="add-img-upload">
-                <p>Upload Image</p>
-                <label htmlFor="image">
-                  <img
-                    src={
-                      image ? URL.createObjectURL(image) : assets.upload_grey
-                    }
-                    alt="Upload preview"
-                  />
-                  <input
-                    type="file"
-                    id="image"
-                    onChange={onImageChange}
-                    hidden
-                    required
-                  />
-                </label>
-              </div>
-              <div className="add-product-description flex-col">
-                <p>Product Description</p>
-                <textarea
-                  rows="3"
-                  name="description"
-                  required
-                  onChange={onChangeHandler}
-                  value={data.description}
-                ></textarea>
-              </div>
-            </div>
-
             <div className="add-right">
               <div className="add-product-name flex-col">
                 <p>Product Name</p>
@@ -278,6 +247,36 @@ const Add = ({ url }) => {
                   <option value="Pasta">Pasta</option>
                   <option value="Noodles">Noodles</option>
                 </select>
+              </div>
+              <div className="add-product-description flex-col">
+                <p>Product Description</p>
+                <textarea
+                  rows="3"
+                  name="description"
+                  required
+                  onChange={onChangeHandler}
+                  value={data.description}
+                ></textarea>
+              </div>
+            </div>
+            <div className="add-left">
+              <div className="add-img-upload">
+                <p>Upload Image</p>
+                <label htmlFor="image">
+                  <img
+                    src={
+                      image ? URL.createObjectURL(image) : assets.upload_grey
+                    }
+                    alt="Upload preview"
+                  />
+                  <input
+                    type="file"
+                    id="image"
+                    onChange={onImageChange}
+                    hidden
+                    required
+                  />
+                </label>
               </div>
               <div className="add-price flex-col">
                 <p>Product Price</p>

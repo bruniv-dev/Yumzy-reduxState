@@ -32,11 +32,50 @@
 
 .list-table-format img {
   width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.list-table-format .action-icons {
+  display: flex;
+  gap: 10px;
+  font-size: 16px;
 }
 
 .list-table-format .cross {
   color: darkred;
   cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.list-table-format .edit {
+  color: var(--dark-yellow);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.list-table-format .edit:hover,
+.list-table-format .cross:hover {
+  transform: scale(1.1);
+}
+
+.list-table-format .edit:active {
+  fill: var(--primary-color);
+}
+.list-table-format .cross:active {
+  fill: red;
+}
+
+.edit-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (max-width: 600px) {
