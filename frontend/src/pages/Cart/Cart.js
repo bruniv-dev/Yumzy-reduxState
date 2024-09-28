@@ -33,8 +33,8 @@ const Cart = ({ setShowLogin }) => {
             return (
               <>
                 <div className="cart-items-title cart-items-item">
-                  {/* <img src={item.image} alt="" /> */}
-                  <img alt="" src={`${url}/images/${item.image}`} />
+                  <img src={item.image} alt="" />
+                  {/* <img alt="" src={`${url}/images/${item.image}`} /> */}
                   <p>{item.name}</p>
                   <p>&#8377;{item.price}</p>
                   <p>{cartItems[item._id]}</p>

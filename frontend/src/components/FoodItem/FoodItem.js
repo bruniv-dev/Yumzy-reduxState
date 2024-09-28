@@ -4,6 +4,7 @@ import { assets } from "../../assets/assets";
 import { StoreContext } from "../../context/StoreContext";
 import { FaCirclePlus } from "react-icons/fa6";
 import { FaCircleMinus } from "react-icons/fa6";
+import { MdAddCircleOutline } from "react-icons/md";
 
 const FoodItem = ({ id, name, price, description, image }) => {
   // const [itemCount, setItemCount] = useState(0);
@@ -24,14 +25,14 @@ const FoodItem = ({ id, name, price, description, image }) => {
         </div>
 
         {!cartItems[id] ? (
-          // <img
-          //   className="add"
-          //   src={assets.add_icon_white}
-          //   alt=""
-          //   onClick={() => addToCart(id)}
-          // />
-          <FaCirclePlus className="add-first" onClick={() => addToCart(id)} />
+          <img
+            className="add-first"
+            src={assets.add_yellow}
+            alt=""
+            onClick={() => addToCart(id)}
+          />
         ) : (
+          // <FaCirclePlus className="add-first" onClick={() => addToCart(id)} />
           <div className="food-item-counter">
             {/* <img
               onClick={() => removeFromCart(id)}

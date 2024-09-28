@@ -9,9 +9,21 @@
   box-sizing: border-box;
 }
 
+.food-item-container-img {
+  position: relative;
+}
+
 .image-div {
   overflow: hidden;
-  height: 200px;
+  height: 180px;
+}
+
+.image-div img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* padding: 10px;
+  padding-bottom: 0; */
 }
 
 .food-item:hover .food-item-image {
@@ -22,7 +34,7 @@
 
 .food-item-image {
   width: 100%;
-  border-radius: 15px 15px 0px 0px;
+  border-radius: 20px 20px 0px 0px;
   transition: all 0.3s ease-in-out;
   object-fit: cover;
 }
@@ -63,10 +75,6 @@
   /* text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.05); */
 }
 
-.food-item-container-img {
-  position: relative;
-}
-
 .food-item-container-img .add {
   width: 35px;
   position: absolute;
@@ -78,7 +86,7 @@
 
 .food-item-counter {
   position: absolute;
-  bottom: 25px;
+  bottom: 10px;
   right: 15px;
   display: flex;
   align-items: center;
@@ -93,11 +101,28 @@
 }
 
 .add-first {
-  font-size: 25px;
-  fill: var(--primary-color);
+  width: 25px;
+  font-size: 20px;
+  fill: white;
   position: absolute;
-  bottom: 25px;
+  bottom: 10px;
   right: 15px;
+  border-radius: 50%;
+  background-color: #000;
+  background-color: white;
+  fill: var(--dark-yellow);
+  fill: var(--primary-color);
+  cursor: pointer;
+  border: none;
+  transition: transform 0.3s ease;
+}
+
+.add-first:hover {
+  transform: scale(1.1);
+}
+
+.add-first:active {
+  transform: scale(0.9);
 }
 
 .icon {

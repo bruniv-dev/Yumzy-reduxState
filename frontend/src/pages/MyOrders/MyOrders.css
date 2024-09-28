@@ -12,6 +12,7 @@
 .my-orders-order {
   display: grid;
   grid-template-columns: 0.5fr 2fr 1fr 1fr 2fr 1fr;
+
   align-items: center;
   gap: 30px;
   font-size: 14px;
@@ -48,6 +49,22 @@
 
 .my-orders-order button:hover {
   background-color: var(--primary-color);
+}
+
+.status-icon {
+  fill: var(--dark-yellow);
+  font-size: 24px;
+}
+
+.status-icon.out-for-delivery {
+  font-size: 27px;
+}
+
+.status-icon.delivered {
+  stroke: var(--primary-color);
+  stroke: var(--dark-yellow);
+
+  fill: white;
 }
 
 @media (max-width: 900px) {
