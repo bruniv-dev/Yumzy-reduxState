@@ -105,7 +105,7 @@
 
 // export default NavBar;
 
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./NavBar.css";
 import { assets } from "../../assets/assets";
 import { Link, useNavigate } from "react-router-dom";
@@ -124,6 +124,10 @@ const NavBar = ({ setShowLogin }) => {
 
   // Get user information from Redux store
   const userInfo = useSelector((state) => state.user.userInfo);
+  useEffect(() => {
+    // Log userInfo to check its contents
+    console.log("User Info:", userInfo);
+  }, [userInfo]);
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -203,26 +207,29 @@ const NavBar = ({ setShowLogin }) => {
         {!token ? (
           <button onClick={() => setShowLogin(true)}>Log In</button>
         ) : (
-          <div className="navbar-profile">
-            <FaUser className="profile-icon" />
-            <ul className="navbar-profile-dropdown">
-              <li>
-                <img src={assets.bag_yellow} alt="Orders" />
-                <p
-                  onClick={() => {
-                    navigate("/myorders");
-                  }}
-                >
-                  Orders
-                </p>
-              </li>
-              <hr />
-              <li onClick={logout}>
-                <img src={assets.logout_icon} alt="Logout" />
-                <p>Logout</p>
-              </li>
-            </ul>
-          </div>
+          <>
+            <div className="navbar-profile">
+              <FaUser className="profile-icon" />
+              <ul className="navbar-profile-dropdown">
+                <li>
+                  <img src={assets.bag_yellow} alt="Orders" />
+                  <p
+                    onClick={() => {
+                      navigate("/myorders");
+                    }}
+                  >
+                    Orders
+                  </p>
+                </li>
+                <hr />
+                <li onClick={logout}>
+                  <img src={assets.logout_icon} alt="Logout" />
+                  <p>Logout</p>
+                </li>
+              </ul>
+            </div>
+            <p className="user-name">{userInfo.name}</p>
+          </>
         )}
       </div>
     </div>

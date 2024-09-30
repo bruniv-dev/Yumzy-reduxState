@@ -36,8 +36,8 @@ import { Provider } from "react-redux";
 import { GoogleOAuthProvider } from "@react-oauth/google"; // Import Google OAuth provider
 
 // Your Google OAuth Client ID stored in an environment variable
-const googleClientId =
-  "411907085715-04tl7u6bn1a4cjrcdua7q2p7aboqc98p.apps.googleusercontent.com";
+const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+console.log("Google Client ID:", process.env.REACT_APP_GOOGLE_CLIENT_ID);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

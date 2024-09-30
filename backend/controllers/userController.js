@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 // import bcrypt from "bcrypt";
 import bcrypt from "bcryptjs";
 import validator from "validator";
+import { sendWelcomeEmail } from "../config/nodemailer.js";
 
 const createToken = (id, role) => {
   return jwt.sign({ id, role }, process.env.JWT_SECRET_KEY);
@@ -43,6 +44,8 @@ export const registerUser = async (req, res) => {
 
     const user = await newUser.save();
 
+    await sendWelcomeEmail(user.email, user.name);
+
     const token = createToken(user._id, user.role);
     res.json({
       success: true,
@@ -55,7 +58,34 @@ export const registerUser = async (req, res) => {
   }
 };
 
-//login user
+// //login user
+// export const loginUser = async (req, res) => {
+//   const { email, password } = req.body;
+//   try {
+//     const user = await userModel.findOne({ email });
+//     if (!user) {
+//       return res.json({
+//         success: false,
+//         message: "User Not Found",
+//       });
+//     }
+
+//     const isMatch = await bcrypt.compare(password, user.password);
+
+//     if (!isMatch) {
+//       res.json({ success: false, message: "Incorrect Password" });
+//     }
+
+//     const token = createToken(user._id, user.role, user.name);
+
+//     res.json({ success: true, token, role: user.role });
+//   } catch (error) {
+//     console.log(error);
+//     res.json({ success: false, message: "Error Occured" });
+//   }
+// };
+
+// login user
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -70,15 +100,15 @@ export const loginUser = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
-      res.json({ success: false, message: "Incorrect Password" });
+      return res.json({ success: false, message: "Incorrect Password" }); // Use return here
     }
 
     const token = createToken(user._id, user.role);
 
-    res.json({ success: true, token, role: user.role });
+    return res.json({ success: true, token, role: user.role }); // Use return here
   } catch (error) {
     console.log(error);
-    res.json({ success: false, message: "Error Occured" });
+    return res.json({ success: false, message: "Error Occurred" }); // Use return here
   }
 };
 
@@ -109,6 +139,7 @@ export const googleLogin = async (req, res) => {
         role: "user",
       });
       await user.save();
+      await sendWelcomeEmail(user.email, user.name);
     }
 
     const jwtToken = createToken(user._id, user.role);
