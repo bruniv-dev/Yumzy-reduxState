@@ -144,6 +144,11 @@ const LoginPopup = ({ setShowLogin }) => {
             ? "Create Account"
             : "Log In"}
         </button>
+        <div className="line">
+          <hr />
+          <span>OR</span>
+          <hr />
+        </div>
         <div className="google-login">
           <GoogleLogin onSuccess={onGoogleSuccess} onError={onGoogleFailure} />
         </div>
