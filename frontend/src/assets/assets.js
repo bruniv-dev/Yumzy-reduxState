@@ -65,6 +65,8 @@ import logout_icon from "./logout_icon.png";
 import parcel_icon from "./parcel_icon.png";
 import upload_grey from "./upload_grey.png";
 import icon from "./icon.png";
+import app_store_logo from "./app-store-logo.png";
+import play_store_logo from "./play-store-logo-png.webp";
 
 export const assets = {
   logo,
@@ -92,6 +94,8 @@ export const assets = {
   parcel_icon,
   upload_grey,
   icon,
+  app_store_logo,
+  play_store_logo,
 };
 
 export const menu_list = [

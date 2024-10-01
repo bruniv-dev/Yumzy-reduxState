@@ -5,6 +5,7 @@
   height: 100%;
   background-color: #00000090;
   display: grid;
+  text-align: center;
 }
 
 .login-popup-container {
@@ -22,13 +23,15 @@
 }
 
 .login-popup-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  position: relative;
+  text-align: center;
   color: black;
 }
 
-.login-popup-title img {
+.login-popup-title .close {
+  position: absolute;
+  top: -5px;
+  right: 0;
   width: 16px;
   cursor: pointer;
 }
@@ -71,4 +74,12 @@
   color: var(--dark-yellow);
   cursor: pointer;
   font-weight: 500;
+}
+
+.google-login {
+  /* margin: 0 auto; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

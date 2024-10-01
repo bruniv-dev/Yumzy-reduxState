@@ -8,6 +8,8 @@ import { loginSuccess } from "../../reduxStore/authSlice";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 
+import { IoClose } from "react-icons/io5";
+
 const LoginPopup = ({ setShowLogin }) => {
   const { url, setToken } = useContext(StoreContext);
   const dispatch = useDispatch();
@@ -90,11 +92,12 @@ const LoginPopup = ({ setShowLogin }) => {
       <form onSubmit={onLogin} className="login-popup-container">
         <div className="login-popup-title">
           <h2>{currentState}</h2>
-          <img
+          {/* <img
             onClick={() => setShowLogin(false)}
             src={assets.cross_icon}
             alt="Close"
-          />
+          /> */}
+          <IoClose className="close" onClick={() => setShowLogin(false)} />
         </div>
         <div className="login-popup-inputs">
           {currentState === "Sign Up" && (

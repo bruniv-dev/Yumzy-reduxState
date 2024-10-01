@@ -10,8 +10,8 @@ const AppDownload = () => {
         Yumzy App
       </p>
       <div className="app-download-platforms">
-        <img src={assets.play_store} alt="" />
-        <img src={assets.app_store} alt="" />
+        <img src={assets.play_store_logo} alt="" />
+        <img src={assets.app_store_logo} alt="" />
       </div>
     </div>
   );
