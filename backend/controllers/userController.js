@@ -9,9 +9,8 @@ const createToken = (id, role) => {
   return jwt.sign({ id, role }, process.env.JWT_SECRET_KEY);
 };
 
-//registerUser
 export const registerUser = async (req, res) => {
-  const { name, password, email } = req.body;
+  const { name, password, email } = req.body; // Include phoneNumber
   try {
     const exists = await userModel.findOne({ email });
     if (exists) {
@@ -36,8 +35,8 @@ export const registerUser = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const newUser = new userModel({
-      name: req.body.name,
-      email: req.body.email,
+      name,
+      email,
       password: hashedPassword,
       role: "user",
     });
@@ -45,6 +44,10 @@ export const registerUser = async (req, res) => {
     const user = await newUser.save();
 
     await sendWelcomeEmail(user.email, user.name);
+    // `    await sendWelcomeSMS(
+    //       user.phoneNumber,
+    //       "Thankyou for choosing us. Happy Eatng, Yumzy!"
+    //     ); // Send SMS`
 
     const token = createToken(user._id, user.role);
     res.json({
@@ -57,33 +60,6 @@ export const registerUser = async (req, res) => {
     res.json({ success: false, message: "Failed to register user" });
   }
 };
-
-// //login user
-// export const loginUser = async (req, res) => {
-//   const { email, password } = req.body;
-//   try {
-//     const user = await userModel.findOne({ email });
-//     if (!user) {
-//       return res.json({
-//         success: false,
-//         message: "User Not Found",
-//       });
-//     }
-
-//     const isMatch = await bcrypt.compare(password, user.password);
-
-//     if (!isMatch) {
-//       res.json({ success: false, message: "Incorrect Password" });
-//     }
-
-//     const token = createToken(user._id, user.role, user.name);
-
-//     res.json({ success: true, token, role: user.role });
-//   } catch (error) {
-//     console.log(error);
-//     res.json({ success: false, message: "Error Occured" });
-//   }
-// };
 
 // login user
 export const loginUser = async (req, res) => {
@@ -113,6 +89,7 @@ export const loginUser = async (req, res) => {
 };
 
 import { OAuth2Client } from "google-auth-library";
+import { sendWelcomeSMS } from "../config/twilio.js";
 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 

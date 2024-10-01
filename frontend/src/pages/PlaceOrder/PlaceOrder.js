@@ -54,10 +54,13 @@ const PlaceOrder = () => {
         }
       });
 
+      const phoneWithCountryCode = `+91${data.phone}`;
+
       let orderData = {
         address: data,
         items: orderItems,
         amount: getTotalCartAmount() + 2, // Adding delivery charges
+        phone: phoneWithCountryCode,
       };
 
       // Post order data to the backend
@@ -207,14 +210,17 @@ const PlaceOrder = () => {
             required
           />
         </div>
-        <input
-          type="text"
-          placeholder="Phone"
-          name="phone"
-          onChange={onChangeHandler}
-          value={data.phone}
-          required
-        />
+        <div className="phone-input">
+          <span className="prefix">+91</span>
+          <input
+            type="text"
+            placeholder="Phone"
+            name="phone"
+            onChange={onChangeHandler}
+            value={data.phone}
+            required
+          />
+        </div>
       </div>
       <div className="place-order-right">
         <div className="cart-total">

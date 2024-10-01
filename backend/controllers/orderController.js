@@ -2,6 +2,7 @@ import Razorpay from "razorpay";
 import dotenv from "dotenv";
 import orderModel from "../models/order.js";
 import userModel from "../models/user.js";
+import { sendOrderConfirmationSMS } from "../config/twilio.js";
 
 dotenv.config({ path: ".env" });
 
@@ -16,7 +17,7 @@ export const placeOrder = async (req, res) => {
   try {
     console.log("Incoming order data:", req.body); // Log incoming request data
 
-    const { userId, items, amount, address } = req.body;
+    const { userId, items, amount, address, phone } = req.body;
 
     // Validate request data
     if (!userId || !items || items.length === 0 || !amount || !address) {
@@ -45,7 +46,6 @@ export const placeOrder = async (req, res) => {
     });
 
     console.log("Razorpay order created:", razorpayOrder); // Log Razorpay order details
-
     // Send Razorpay order details back to frontend
     res.json({
       success: true,
@@ -54,15 +54,76 @@ export const placeOrder = async (req, res) => {
       currency: razorpayOrder.currency,
       orderId: newOrder._id,
     });
+    sendOrderConfirmationSMS(phone, newOrder._id);
+    console.log(phone, newOrder._id);
   } catch (error) {
     console.error("Error placing order:", error); // Log error
     res.status(500).json({
       success: false,
       message: "Error placing order",
-      error: error.message, // Provide more detailed error message
+      error: error.message,
     });
   }
 };
+
+// Place Order Controller
+// export const placeOrder = async (req, res) => {
+//   try {
+//     const { userId, items, amount, address, phone } = req.body;
+
+//     // Validate request data
+//     if (
+//       !userId ||
+//       !items ||
+//       items.length === 0 ||
+//       !amount ||
+//       !address ||
+//       !phone
+//     ) {
+//       return res
+//         .status(400)
+//         .json({ success: false, message: "Invalid request data" });
+//     }
+
+//     // Create a new order in the database
+//     const newOrder = new orderModel({
+//       userId,
+//       items,
+//       amount,
+//       address,
+//     });
+//     await newOrder.save();
+
+//     // Clear user's cart data
+//     await userModel.findByIdAndUpdate(userId, { cartData: {} });
+
+//     // Create Razorpay order
+//     const razorpayOrder = await razorpay.orders.create({
+//       amount: amount * 100, // Amount in paise (smallest currency unit for INR)
+//       currency: "INR",
+//       receipt: `order_${newOrder._id}`,
+//     });
+
+//     // Send Razorpay order details back to frontend
+//     res.json({
+//       success: true,
+//       razorpayOrderId: razorpayOrder.id,
+//       amount: razorpayOrder.amount,
+//       currency: razorpayOrder.currency,
+//       orderId: newOrder._id,
+//     });
+
+//     // Send SMS once order is confirmed
+//     sendOrderConfirmationSMS(phone, newOrder._id);
+//   } catch (error) {
+//     console.error("Error placing order:", error);
+//     res.status(500).json({
+//       success: false,
+//       message: "Error placing order",
+//       error: error.message,
+//     });
+//   }
+// };
 
 export const verifyOrder = async (req, res) => {
   const { orderId, success } = req.body;

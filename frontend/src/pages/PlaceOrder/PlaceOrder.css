@@ -40,6 +40,24 @@
   margin-top: 30px;
 }
 
+.phone-input {
+  display: flex;
+}
+
+.prefix {
+  height: 100%;
+  background-color: #f0f0f0; /* Light grey background */
+  padding: 2px; /* Adjust padding as needed */
+  border: 0.5px solid #686060; /* Border style */
+  border-radius: 4px 0 0 4px; /* Rounded corners on the left */
+  font-weight: 500;
+  padding: 9px;
+}
+
+.phone-input input {
+  border-radius: 0 4px 4px 0;
+}
+
 @media (max-width: 750px) {
   .place-order {
     flex-direction: column;
