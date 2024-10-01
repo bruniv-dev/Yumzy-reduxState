@@ -61,6 +61,7 @@ const PlaceOrder = () => {
         items: orderItems,
         amount: getTotalCartAmount() + 2, // Adding delivery charges
         phone: phoneWithCountryCode,
+        // email:data.email
       };
 
       // Post order data to the backend

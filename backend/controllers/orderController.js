@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import orderModel from "../models/order.js";
 import userModel from "../models/user.js";
 import { sendOrderConfirmationSMS } from "../config/twilio.js";
+import { sendOrderConfirmationEmail } from "../config/nodemailer.js";
 
 dotenv.config({ path: ".env" });
 
@@ -36,6 +37,7 @@ export const placeOrder = async (req, res) => {
     await newOrder.save();
 
     // Clear user's cart data
+
     await userModel.findByIdAndUpdate(userId, { cartData: {} });
 
     // Create Razorpay order
@@ -54,7 +56,10 @@ export const placeOrder = async (req, res) => {
       currency: razorpayOrder.currency,
       orderId: newOrder._id,
     });
-    sendOrderConfirmationSMS(phone, newOrder._id);
+
+    const user = await userModel.findById(userId);
+    await sendOrderConfirmationEmail(user.email, user.name, newOrder._id);
+    await sendOrderConfirmationSMS(phone, newOrder._id);
     console.log(phone, newOrder._id);
   } catch (error) {
     console.error("Error placing order:", error); // Log error

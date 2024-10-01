@@ -33,3 +33,27 @@ export const sendWelcomeEmail = async (to, name) => {
     console.error("Error sending email: ", error);
   }
 };
+
+export const sendOrderConfirmationEmail = async (to, name, orderId) => {
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to,
+    subject: "Yumzy:  Order Confirmation",
+    html: `
+      <div style="text-align: center;">
+        <h1>Order Confirmation</h1>
+        <p>Dear ${name},</p>
+        <p>Thank you for your order! Your order ID is <strong>${orderId}</strong>.</p>
+        <p>We are preparing your food and will notify you once it’s on the way!</p>
+        <p>Happy Eating,<br>Yumzy</p>
+      </div>
+    `,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    console.log("Order confirmation email sent to: " + to);
+  } catch (error) {
+    console.error("Error sending order confirmation email: ", error);
+  }
+};
