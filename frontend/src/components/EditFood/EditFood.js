@@ -219,12 +219,12 @@ const EditFood = ({ url, food, onClose, fetchList }) => {
               value={data.category}
               onChange={onChangeHandler}
             >
-              <option value="Salad">Salad</option>
-              <option value="Rolls">Rolls</option>
-              <option value="Deserts">Deserts</option>
-              <option value="Sandwich">Sandwich</option>
-              <option value="Cake">Cake</option>
-              <option value="Pure Veg">Pure Veg</option>
+              <option value="Starters">Starters</option>
+              <option value="Biriyani">Biriyani</option>
+              <option value="Desserts">Desserts</option>
+              <option value="Meals">Meals</option>
+              <option value="Pizza">Pizza</option>
+              <option value="Tiffin">Tiffin</option>
               <option value="Pasta">Pasta</option>
               <option value="Noodles">Noodles</option>
             </select>

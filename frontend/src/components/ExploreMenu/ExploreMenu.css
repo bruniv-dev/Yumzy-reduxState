@@ -39,10 +39,11 @@
 }
 
 .explore-menu-list-item img:hover {
-  transform: scale(1.03);
+  transform: scale(1.05);
   box-sizing: border-box;
   overflow: hidden;
   border-radius: 50px;
+  box-shadow: 0px 0px 2px var(--secondary-color);
 }
 
 .explore-menu-list-item p {
@@ -53,8 +54,9 @@
 }
 
 .explore-menu-list-item .active {
-  border: 4px solid var(--primary-color);
+  border: 2px solid var(--primary-color);
   padding: 2px;
+  transform: scale(1.05);
 }
 
 .explore-menu hr {
