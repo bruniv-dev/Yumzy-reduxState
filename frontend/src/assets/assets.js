@@ -1,12 +1,12 @@
-// import menu_1 from "./menu_1.png";
 import menu_1 from "./Starters-main.jpg";
 import menu_2 from "./biriyani-main.jpg";
 import menu_3 from "./dessert-main.jpg";
 import menu_4 from "./meals-main.jpg";
-import menu_5 from "./pizza-main.jpg";
+import menu_5 from "./pizzaa-main.jpg";
 import menu_6 from "./tiffins-main.jpg";
-import menu_7 from "./pasta-main.png";
+import menu_7 from "./pastaa-main.jpg";
 import menu_8 from "./noodless-main.jpg";
+
 import food_1 from "./food_1.png";
 import food_2 from "./food_2.png";
 import food_3 from "./food_3.png";

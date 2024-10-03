@@ -6,7 +6,8 @@ const AppDownload = () => {
   return (
     <div className="app-download" id="app-download">
       <p>
-        For Better Experience download <br />
+        For Better Experience download the
+        <br />
         Yumzy App
       </p>
       <div className="app-download-platforms">

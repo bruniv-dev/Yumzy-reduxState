@@ -5,11 +5,16 @@ import { menu_list } from "../../assets/assets";
 const ExploreMenu = ({ category, setCategory }) => {
   return (
     <div className="explore-menu" id="explore-menu">
-      <h2>Find Your Next Meal</h2>
-      <p className="explore-menu-text">
+      <div className="line-heading">
+        <hr />
+        <h2>Find Your Next Meal</h2>
+        <hr />
+      </div>
+
+      {/* <p className="explore-menu-text">
         Pick from our extensive menu sections. Discover delicious dishes for
         every preference.
-      </p>
+      </p> */}
       <div className="explore-menu-list">
         {menu_list.map((item, index) => {
           return (
@@ -32,7 +37,7 @@ const ExploreMenu = ({ category, setCategory }) => {
           );
         })}
       </div>
-      <hr />
+      {/* <hr /> */}
     </div>
   );
 };
