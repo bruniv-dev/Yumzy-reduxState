@@ -80,6 +80,7 @@
   border-radius: 6px;
   width: 100%;
   transition: border-color 0.3s ease;
+  margin-bottom: 0;
 }
 
 .add-product-name input:focus,
@@ -117,34 +118,39 @@
 
 .add-form-buttons {
   display: flex;
-  gap: 10px;
+  gap: 15px;
 }
 
 .add-button,
 .cancel-button {
-  width: 80px;
-  border: none;
+  width: 100px;
+  border: 1px solid var(--dark-yellow);
   cursor: pointer;
-  padding: 12px;
+  padding: 8px;
   background-color: var(--primary-color);
   color: white;
-  border-radius: 6px;
+  color: var(--secondary-color);
+  border-radius: 20px;
   transition: background-color 0.3s ease;
   font-size: 16px;
+  font-weight: 500;
 }
 
 .cancel-button {
-  background-color: #999;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
 }
 
 .add-button:hover,
 .add-button:active {
   background-color: var(--dark-yellow);
+  color: var(--secondary-color);
 }
 
 .cancel-button:hover,
 .cancel-button:active {
   background-color: var(--secondary-color);
+  color: white;
 }
 
 .add p {

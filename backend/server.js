@@ -12,6 +12,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 import dotenv from "dotenv";
+import contactRouter from "./routes/contactRoutes.js";
 dotenv.config({ path: ".env" });
 
 //middleware
@@ -24,11 +25,13 @@ app.use(cors());
 connectDB();
 
 //routes -- api endpoint
-app.use("/api/food", foodRouter);
+
 app.use("/images", express.static("uploads"));
+app.use("/api/food", foodRouter);
 app.use("/api/user", userRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/order", orderRouter);
+app.use("/api/contact", contactRouter);
 
 //req data from server
 app.get("/", (req, res) => {

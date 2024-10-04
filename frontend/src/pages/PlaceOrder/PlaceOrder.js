@@ -61,7 +61,6 @@ const PlaceOrder = () => {
         items: orderItems,
         amount: getTotalCartAmount() + 2, // Adding delivery charges
         phone: phoneWithCountryCode,
-        // email:data.email
       };
 
       // Post order data to the backend
@@ -219,6 +218,7 @@ const PlaceOrder = () => {
             name="phone"
             onChange={onChangeHandler}
             value={data.phone}
+            pattern="[0-9]{10}"
             required
           />
         </div>

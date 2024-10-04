@@ -74,7 +74,12 @@
 
 .navbar-menu-item:hover {
   color: var(--primary-color);
+  cursor: pointer;
 }
+
+/* .navbar-menu-item.contact:hover {
+  cursor: pointer;
+} */
 
 .navbar-bag-icon .dot {
   position: absolute;

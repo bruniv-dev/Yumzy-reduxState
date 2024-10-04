@@ -57,3 +57,34 @@ export const sendOrderConfirmationEmail = async (to, name, orderId) => {
     console.error("Error sending order confirmation email: ", error);
   }
 };
+
+export const sendAdminContactEmail = async ({
+  firstName,
+  lastName,
+  email,
+  phone,
+  message,
+}) => {
+  const mailOptions = {
+    from: email,
+    to: process.env.EMAIL_USER,
+    subject: "New Contact Form Submission",
+    html: `
+      <div>
+        <h2>New Contact Form Submission</h2>
+        <p><strong>Name:</strong> ${firstName} ${lastName}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> +91 ${phone}</p>
+        <p><strong>Message:</strong> ${message}</p>
+      </div>
+    `,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    console.log("Email sent successfully to admin.");
+  } catch (error) {
+    console.error("Error sending email: ", error);
+    throw error;
+  }
+};

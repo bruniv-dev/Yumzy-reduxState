@@ -67,8 +67,11 @@ import upload_grey from "./upload_grey.png";
 import icon from "./icon.png";
 import app_store_logo from "./app-store-logo.png";
 import play_store_logo from "./play-store-logo-png.webp";
+import contact from "./contact.png";
+import black from "./black-bg.jpg";
 
 export const assets = {
+  black,
   logo,
   logo_dark,
   basket_icon,
@@ -96,6 +99,7 @@ export const assets = {
   icon,
   app_store_logo,
   play_store_logo,
+  contact,
 };
 
 export const menu_list = [
