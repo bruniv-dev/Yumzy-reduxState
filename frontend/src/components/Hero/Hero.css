@@ -81,3 +81,9 @@
     padding: 2vw 4vw;
   }
 }
+
+@media (max-width: 530px) {
+  .hero-contents button {
+    display: none;
+  }
+}
